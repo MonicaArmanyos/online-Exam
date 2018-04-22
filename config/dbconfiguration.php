@@ -1,7 +1,8 @@
 <?php
-define("DB_HOST", "localhost");
-define("DB_NAME", "onlineExam");
-define("DB_USER", "root");
-define("DB_PASSWORD", "1993");
+//please enter your database configurations 
+define("DB_HOST", "");
+define("DB_NAME", "");
+define("DB_USER", "");
+define("DB_PASSWORD", "");
 
 
