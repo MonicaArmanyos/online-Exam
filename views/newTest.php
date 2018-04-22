@@ -9,7 +9,7 @@
             </div>
             <?php endif;?>
 <h1>Test <?=  Exam_model::number_of_exams()+1; ?></h1>
-<form enctype="multipart/form-data" method="GET" action="http://testonline.com/?cont=Exam_cont/insertion">
+<form method="post" action="http://testonline.com/?cont=Exam_cont/insertion">
 <div class="form-group">
   <div class="input-group-prepend">
     <span class="input-group-text">Question one</span>
@@ -41,6 +41,7 @@
                 <input class="form-control" type="text"   placeholder="Answer"   name="A1"  required="required">
                 </div>
 </div>
+
 <div class="form-group">
   <div class="input-group-prepend">
     <span class="input-group-text">Question two</span>
@@ -322,4 +323,5 @@
 </div>
 <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 </form>
-<?php include '../views/footer1.php';?> </div>
+<?php include '../views/footer1.php';
+?> </div>

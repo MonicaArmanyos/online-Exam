@@ -14,7 +14,7 @@
 class Exam_cont extends Controller {
    public function  add()
    {
-       if(User_model::$request->session('uname')== NULL)
+       if($this->request->session('uname')== NULL)
        {
            $userCont=new User_cont($this->request);
            $userCont->login();
@@ -25,12 +25,12 @@ class Exam_cont extends Controller {
    }
    public function insertion()
    {
-       if(User_model::$request->session('uname')== NULL)
+       if($this->request->session('uname')== NULL)
        {
            $userCont=new User_cont($this->request);
            $userCont->login();
        }else{
-       $exam=new Exam_model();
+       $exam=new Exam_model($this->request);
        if($exam->insert_Exam())
        {
            echo $this->load_view('../views/newTest.php',TRUE);
@@ -43,7 +43,7 @@ class Exam_cont extends Controller {
    }
    public function edit()
    {
-       if(User_model::$request->session('uname')== NULL)
+       if($this->request->session('uname')== NULL)
        {
            $userCont=new User_cont($this->request);
            $userCont->login();
@@ -51,7 +51,7 @@ class Exam_cont extends Controller {
    }
    public function delete()
    {
- if(User_model::$request->session('uname')== NULL)
+ if($this->request->session('uname')== NULL)
        {
            $userCont=new User_cont($this->request);
            $userCont->login();

@@ -2,7 +2,7 @@
 
 class User_model {
     private static $username,$email,$password,$isAdmin;
-    public static $request;
+    private static $request;
     private static $queryBuilder;
     private function __construct() {
         
@@ -88,14 +88,14 @@ class User_model {
     {
         self::setPassword(self::$request->post('password'));
         $set=array("PASSWORD"=> self::getPassword());
-        return self::$queryBuilder->update("user",$set,"`email`=".'"'.self::$request->session('email').'"');
+        return self::$queryBuilder->update("user",$set,"`email`=".'"'. self::$request->session('email').'"');
     }
 
     public static function isUser()
     {
         //$output=[];
         $pass= self::$request->post('password');
-        $name=self::$request->post('uname');
+        $name= self::$request->post('uname');
         $result=self::$queryBuilder->select("user",array("id","PASSWORD"),"username='$name'");
         if($result !== NULL)
         {
@@ -115,5 +115,9 @@ class User_model {
         else {
                 return FALSE;
             }
+    }
+    public static function getRequest()
+    {
+    return self::$request;
     }
 }

@@ -14,12 +14,12 @@
 class Exam_model {
     private $questions=[];
     private $answers=[];
-    private $size=10;
-    private  $request;
+    private $size=10,$i;
+    private $request;
     private static $queryBuilder;
     public function __construct($request) {
        
-        $this->request= User_model::$request;
+        $this->request= $request;
         self::$queryBuilder= new mysqliQueryBuilder();
     }
     public static function number_of_exams()
@@ -44,10 +44,10 @@ class Exam_model {
         $success=false;
         $r1=array("id"=> self::number_of_exams()+1);
         self::$queryBuilder->insert("exam", $r1); 
-        for($i=1;i<=10;$i++)
+        for($i=1;$i<=10;$i++)
         {
-            $rec=array("q"=> $this->request->get('q'.$i),"a"=> $this->request->get('a'.$i),"b"=> $this->request->get('b'.$i),"c"=> $this->request->get('c'.$i),"d"=> $this->request->get('d'.$i),"Ans"=> $this->request->get('A'.$i),"Exam"=>self::number_of_exams()+1);
-            $success=self::$queryBuilder->insert("question", $rec);    
+          $rec=array("q"=> $this->request->post("q$i"),"a"=> $this->request->post("a$i"),"b"=> $this->request->post("b$i"),"c"=> $this->request->post("c$i"),"d"=> $this->request->post("d$i"),"Ans"=> $this->request->post("A$i"),"Exam"=>self::number_of_exams()+1);
+           $success=self::$queryBuilder->insert("question", $rec);    
         }
         return $success;
 
